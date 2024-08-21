@@ -87,7 +87,7 @@ public class AdministratorController {
 		try {
 			administratorService.insert(administrator);
 		} catch (DuplicateKeyException e) {
-			result.rejectValue("mailAddress", "mailAddress.duplicated");
+			result.rejectValue("mailAddress", "error.mailAddress.duplicated");
 			return toInsert(model);
 		}
 		return "redirect:/";
