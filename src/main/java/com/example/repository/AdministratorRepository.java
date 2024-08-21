@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
@@ -74,8 +73,12 @@ public class AdministratorRepository {
 	 * @param administrator 管理者情報
 	 */
 	public void insert(Administrator administrator) {
-		SqlParameterSource param = new BeanPropertySqlParameterSource(administrator);
 		String sql = "insert into administrators(name,mail_address,password)values(:name,:mailAddress,:password);";
+		SqlParameterSource param = new MapSqlParameterSource()
+				.addValue("name", administrator.getName())
+				.addValue("mailAddress", administrator.getMailAddress())
+				.addValue("password", administrator.getPassword());
+		
 		template.update(sql, param);
 	}
 
