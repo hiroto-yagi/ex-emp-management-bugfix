@@ -29,6 +29,9 @@ public class InsertAdministratorForm {
 	/** パスワードとパスワード（確認用）が一致しているかを判定 */
 	@AssertTrue(message = "Password and Password confirmation don't match")
 	public boolean isPasswordValid() {
+		if (password == null || password.isEmpty()) {
+			return true;
+		}
 		return password.equals(passwordConfirmation);
 	}
 
@@ -56,10 +59,19 @@ public class InsertAdministratorForm {
 		this.password = password;
 	}
 
+	public String getPasswordConfirmation() {
+		return passwordConfirmation;
+	}
+
+	public void setPasswordConfirmation(String passwordConfirmation) {
+		this.passwordConfirmation = passwordConfirmation;
+	}
+
 	@Override
 	public String toString() {
 		return "InsertAdministratorForm [name=" + name + ", mailAddress=" + mailAddress + ", password=" + password
-				+ "]";
+				+ ", passwordConfirmation=" + passwordConfirmation + "]";
 	}
 
+	
 }
