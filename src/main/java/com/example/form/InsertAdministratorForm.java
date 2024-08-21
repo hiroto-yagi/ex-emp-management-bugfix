@@ -15,7 +15,7 @@ public class InsertAdministratorForm {
 	@NotBlank(message = "Name is required")
 	private String name;
 	/** メールアドレス */
-	@Size(min=1, max=50, message = "Email Address is more than 1 and less than 50 letters")
+	@Size(min=1, max=256, message = "Email Address is more than 1 and less than 256 letters")
 	@Email(message = "Format is not correct")
 	private String mailAddress;
 	/** パスワード */
